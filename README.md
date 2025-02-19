@@ -31,7 +31,7 @@ As a result, we have to power up the transmitter. In order to do so, we see that
 
 ![I2C-0](img/I2C-0.jpg)
 
-I2C-0 is connected to PL as P15 & P16
+I2C-0 is connected to PL as `P15` & `P16`
 
 ![I2C-0.PL](img/I2C-0.PL.jpg)
 
@@ -41,13 +41,13 @@ The minimal configuration needed is the following:
 
 1. Raise the `RESETn` signal [to power up Sil9022A]
 2. Write `0x00` to register `0xC7`, in order to enable the TPI (Transmitter Programming Interface)
-3. Wait for ID to stabilize (at 0x1B-1D, 30).
+3. Wait for ID to stabilize (at `0x1B-1D, 30`).
 4. Enable source termination (might be unnecessary, depending on the schematic/ external resistors)
 5. Disable TMDS output (at `0x1A`) (default)
 6. Switch from D2 to D0 state (at `0x1E`)
 7. Enable TMDS output (at `0x1A`)
 
-### Address
+### I2C Address
 
 ![i2c addresses](img/addresses.jpg)
 
@@ -75,9 +75,9 @@ The temperature sensor, on board, is **LM75B** ([NXP](https://www.nxp.com/part/L
 
 It's an 11-bit ADC (with increments of **0.125**°C)
 
-The 7-bit [I2C] address (taken from the previous picture) is **0x49**.
+The 7-bit [I2C] address is **0x49**.
 
-It is connected to **I2C0**, which is connected to **PL** pins P15 & P16. The provided **contraints** file has been set up.
+It is connected to **I2C0**, which is connected to **PL** pins `P15` & `P16`. The provided **contraints** file has been set up.
 
 ![PL I2C0](img/PL-I2C0.jpg)
 
