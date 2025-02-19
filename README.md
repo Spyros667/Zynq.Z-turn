@@ -152,8 +152,8 @@ Reading:
 * [Digital Design and Computer Architecture, ARM Edition](https://shop.elsevier.com/books/digital-design-and-computer-architecture-arm-edition/harris/978-0-12-800056-4)
 * [VESA timings](http://www.tinyvga.com/vga-timing)
 * [Xilinx (baremetal) libraries](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841745/Baremetal+Drivers+and+Libraries)
-* [Gpio-PS driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver) 🍫 [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
-* [AXI-I2C driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver) 🍫 [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html)
+* [Gpio-PS driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver) 🧼 [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html)
+* [AXI-I2C driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver) 🧼 [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html)
 
 
 <!-- References/ invisible parts -->
