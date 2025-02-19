@@ -87,6 +87,50 @@ The sensor's [temperature] register, is at address **00h**. (It is **2 bytes** l
 
 ---
 
+## GPIO
+
+The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver). [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
+
+(All code has been provided). The general procedure is the following.
+
+Gpio is first **initialized**:
+
+* XGpioPs_LookupConfig() ▶ Retrieves the addresses assigned to the Gpio-PS controller and the related (parent?) interrupts
+* XGpioPs_CfgInitialize() ▶ Sets the XGpioPs instance's [variables](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/struct_x_gpio_ps.html).
+
+Next the **pins are set**:
+
+* XGpioPs_SetDirectionPin() ▶ Which sets the pin as input/output
+* XGpioPs_SetOutputEnablePin()
+
+And written:
+
+* **XGpioPs_WritePin()**
+
+---
+
+## I2C
+
+The library that'll be used is the [I2C-PS](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841822/I2C-PS+standalone+driver), with the respective [API](https://xilinx.github.io/embeddedsw.github.io/iicps/doc/html/api/index.html).
+
+(All code has been provided). The general procedure is the following.
+
+Initialization:
+
+1. XIicPs_LookupConfig(XIICPS_BASEADDRESS);
+2. XIicPs_CfgInitialize(&Iic, ConfigPtr, ConfigPtr->BaseAddress);
+3. XIicPs_SelfTest(&Iic);
+4. XIicPs_SetSClk(&Iic, IIC_SCLK_RATE);
+
+Reading:
+
+1. XIicPs_BusIsBusy(&Iic)
+2. XIicPs_MasterSendPolled(&Iic, const_cast<uint8_t*>(v.data()), v.size(), SLAVE_ADDRESS);  -- Send register address, or an array of bytes (for Page/Offset referencies).
+3. XIicPs_BusIsBusy(&Iic)
+4. XIicPs_MasterRecvPolled(&Iic, result.data(), result.capacity(), SLAVE_ADDRESS);  -- Read register's values
+
+---
+
 ## Referencies
 
 * [HDMI Made Easy: HDMI-to-VGA and VGA-to-HDMI Converters](https://www.analog.com/en/resources/analog-dialogue/articles/hdmi-made-easy.html)
