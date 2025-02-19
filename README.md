@@ -4,9 +4,11 @@ The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple per
 
 ![peripherals](img/z-turn.peripherals.jpg)
 
-Some can be accessed through [Zynq][Zynq]'s [PS][PS] part, while others through its [PL][PL].
+Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL].
 
 ---
+
+## Block design
 
 ![I2C controller](block_design/sandbox.svg)
 
@@ -15,9 +17,9 @@ Some can be accessed through [Zynq][Zynq]'s [PS][PS] part, while others through 
 ## HDMI
 
 In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf).  
-According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins are numbered as [MIO_#][MIO]).
+According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins would be numbered as [MIO_#][MIO]).
 
-![hdmi pins](img/HDMI pins.jpg)
+![hdmi pins](img/HDMI_pins.jpg)
 ![MIO](img/MIO.jpg)
 
 Looking further down [the schematics], we see that the signals pass through an "HDMI transmitter".
@@ -97,7 +99,6 @@ The sensor's [temperature] register, is at address **00h**. (It is **2 bytes** l
     * [AXI-I2C driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841916/AXI-I2C+standalone+driver)
         * [API](https://xilinx.github.io/embeddedsw.github.io/iic/doc/html/api/index.html)
 
----
 
 <!-- References/ invisible parts -->
 
