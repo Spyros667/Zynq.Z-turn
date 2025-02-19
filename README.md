@@ -6,6 +6,8 @@ The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple per
 
 Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL].
 
+![MIO](img/MIO.jpg)
+
 ---
 
 ## Block design
@@ -17,10 +19,9 @@ Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL
 ## HDMI
 
 In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf).  
-According to these, they are connected to the [PL][PL] part (since the [PS][PS] pins would be numbered as [MIO_#][MIO]).
+According to these, they are connected to the [PL][PL] part (since [PS][PS] pins would be numbered like [MIO_#][MIO]).
 
 ![hdmi pins](img/HDMI_pins.jpg)
-![MIO](img/MIO.jpg)
 
 Looking further down [the schematics], we see that the signals pass through an "HDMI transmitter".
 
