@@ -17,9 +17,9 @@ Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL
 3. ### [Raising RESETn](#Raising-RESETn-1)
 <!-- -->
 * ### [Temperature sensor](#Temperature-sensor-1)
-* ### [GPIO](#GPIO)
-* ### [I2C](#I2C)
-* ### [Referencies](#Referencies)
+* ### [GPIO](#GPIO-1)
+* ### [I2C](#I2C-1)
+* ### [Referencies](#Referencies-1)
 
 ---
 
