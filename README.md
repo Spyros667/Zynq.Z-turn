@@ -100,6 +100,18 @@ The sensor's [temperature] register, is at address **00h**. (It is **2 bytes** l
 
 ---
 
+## G-Sensor 🧼 Acceleration sensor
+
+Referencing the [schematics](doc/zturnv2Schematic.pdf), the **g-sensor**, onboard, is the [adlx345](https://www.analog.com/en/products/adxl345.html) from *Analog Devices* ([datasheet](/home/ladon/contmp/Zynq.Z-turn/doc/adxl345.pdf)).
+
+![](img/adxl345.jpg)
+
+With **7-bit** address `53h`, over `I2C0`.
+
+It has **3 axis** of 13 bits, which give a **resolution** of **3.9 mg**/LSB.
+
+---
+
 ## GPIO
 
 The library being used is called [**Gpio-PS**](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841744/Gpio-PS+standalone+driver). [API](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/index.html).
