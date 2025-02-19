@@ -8,6 +8,19 @@ Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL
 
 ![MIO](img/MIO.jpg)
 
+## Contents
+
+* ### [Block design](#Block-design-1)
+<!-- -->
+1. ### [HDMI](#HDMI-1)
+2. ### [Activating Sil9022A](#Activating-Sil9022A-1)
+3. ### [Raising RESETn](#Raising-RESETn-1)
+<!-- -->
+* ### [Temperature sensor](#Temperature-sensor-1)
+* ### [GPIO](#GPIO)
+* ### [I2C](#I2C)
+* ### [Referencies](#Referencies)
+
 ---
 
 ## Block design
