@@ -1,4 +1,4 @@
-# Zynq.Z-turn
+# [Zynq.Z-turn](https://github.com/Spyros667/Zynq.Z-turn)
 
 The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
 
@@ -100,7 +100,7 @@ The sensor's [temperature] register, is at address **00h**. (It is **2 bytes** l
 
 ---
 
-## G-Sensor 🧼 Acceleration sensor
+## G-Sensor (acceleration sensor)
 
 Referencing the [schematics](doc/zturnv2Schematic.pdf), the **g-sensor**, onboard, is the [adlx345](https://www.analog.com/en/products/adxl345.html) from *Analog Devices* ([datasheet](/home/ladon/contmp/Zynq.Z-turn/doc/adxl345.pdf)).
 
@@ -109,6 +109,40 @@ Referencing the [schematics](doc/zturnv2Schematic.pdf), the **g-sensor**, onboar
 With **7-bit** address `53h`, over `I2C0`.
 
 It has **3 axis** of 13 bits, which give a **resolution** of **3.9 mg**/LSB.
+
+* Q: Can it detect [variations in earth's gravity](https://en.wikipedia.org/wiki/Gravity_of_Earth#Variation_in_magnitude)?
+* A: No. Maximum variation is around `0.069m/s²` (0.7% ⋅ g) while we measure at `0.035m/s²` (1/282 ⋅ g).
+
+## Resolution
+
+Maximum resolution can be achieved only when measuring around `±2 g`.
+
+![](img/G-sensor.sensitivity.jpg)
+
+Settings are through the `0x31` register (named "DATA_FORMAT"), but they default to **full resolution**.
+
+![](img/G-sensor.range_bits.jpg)
+
+![](img/G-sensor.DATA_FORMAT.jpg)
+
+![](img/G-sensor.DATA_FORMAT.2.jpg)
+
+## Sampling rate
+
+With a **default** sampling rate of `100Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **3200 Hz**).
+
+![](img/G-sensor.rate.jpg)
+
+![](img/G-sensor.rate.2.jpg)
+
+(Old [data] values get discarded).
+
+## Data
+
+Data is stored as 3 sets of 2 bytes, at registers `0x32 to 0x37`. They should be read as a 6-byte burst, to retain concurrency.
+
+![](img/G-sensor.DATA.jpg)
+
 
 ---
 
