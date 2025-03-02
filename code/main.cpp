@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "Sil9022A.h"	// Sil9022A{}
 #include "LM75BD.h"		// LM75BD{}
+#include "ADXL345.h"	// ADXL345{}
 #include <cstdio>		// printf()
 
 extern "C"
@@ -20,9 +21,12 @@ int main()
 
 	LM75BD lm;
 
+	ADXL345 adxl;
+
 	while (true)
 	{
 		lm.read({0x00}, 2);
+		adxl.read({0x32}, 6);
 		usleep(1300000);
 	}
 

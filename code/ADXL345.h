@@ -1,10 +1,5 @@
 #pragma once
 
-extern "C"
-{
-	#include "xgpiops.h"		// XGpioPs{}
-}
-
 #include "I2C.h"	// I2C{}
 
 // =============================================================================
@@ -15,15 +10,10 @@ extern "C"
 //		inheritance hierarchy (as long as it is inherited virtual every time)."
 //	: https://en.cppreference.com/w/cpp/language/derived_class
 // =============================================================================
-class ADXL345: virtual I2C
+struct ADXL345: virtual I2C
 {
-public:
+	// ==============
+	//  Constructors
+	// ==============
 	ADXL345 (void);
-	
-private:
-	// ======================
-	//  Single use functions
-	// ======================
-	XGpioPs XGpioPs_init (void) const;
-	void raise_RESETn (void) const;
 };

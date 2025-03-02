@@ -8,6 +8,9 @@ using namespace std;
 
 constexpr uint8_t	LM75BD_address	= 0x49;
 
+// =============
+//  Constructor
+// =============
 LM75BD::LM75BD (void)
 	: I2C(LM75BD_address)
 {

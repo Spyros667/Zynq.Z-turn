@@ -18,6 +18,9 @@ extern "C"
 class Sil9022A: virtual I2C
 {
 public:
+	// ==============
+	//  Constructors
+	// ==============
 	Sil9022A (void);
 	
 private:

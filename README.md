@@ -111,7 +111,14 @@ With **7-bit** address `53h`, over `I2C0`.
 It has **3 axis** of 13 bits, which give a **resolution** of **3.9 mg**/LSB.
 
 * Q: Can it detect [variations in earth's gravity](https://en.wikipedia.org/wiki/Gravity_of_Earth#Variation_in_magnitude)?
-* A: No. Maximum variation is around `0.069m/s²` (0.7% ⋅ g) while we measure at `0.035m/s²` (1/282 ⋅ g).
+* A: No. **Maximum** variation is around `0.069m/s²` (0.7% ⋅ g) while we measure at `0.035m/s²` (0.36% ⋅ g) (1/282 ⋅ g).
+
+### I2C mode (disabled SPI)
+
+![](img/ADXL-I2C.jpg)
+
+`I2C` communication mode is forced, due to `C̅S̅` being tied to `VDDIO` (high).
+
 
 ## Resolution
 
@@ -129,7 +136,7 @@ Settings are through the `0x31` register (named "DATA_FORMAT"), but they default
 
 ## Sampling rate
 
-With a **default** sampling rate of `100Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **3200 Hz**).
+With a **default** sampling rate of `100Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **1600 Hz**).
 
 ![](img/G-sensor.rate.jpg)
 
@@ -143,6 +150,10 @@ Data is stored as 3 sets of 2 bytes, at registers `0x32 to 0x37`. They should be
 
 ![](img/G-sensor.DATA.jpg)
 
+## (Thoughts)
+
+With a maximum sampling rate of 1600Hz, we should probably delay data transmission for 1 frame (@ 60FPS).  
+This gives us 
 
 ---
 

@@ -13,6 +13,9 @@ extern "C"
 class I2C
 {
 public:
+	// ==============
+	//  Constructors
+	// ==============
 	I2C (const uint8_t& SLAVE_ADDRESS);
 
 	// ====================================================

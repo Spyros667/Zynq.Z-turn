@@ -15,6 +15,9 @@ using namespace std;
 constexpr uint32_t XIICPS_BASEADDRESS	= XPAR_XIICPS_0_BASEADDR;
 constexpr uint32_t IIC_SCLK_RATE		= 100e3;
 
+// =============
+//  Constructor
+// =============
 I2C::I2C (const uint8_t& SLAVE_ADDRESS)
 	: Iic(XIicPs_init()), SLAVE_ADDRESS(SLAVE_ADDRESS)
 {
