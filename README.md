@@ -136,13 +136,18 @@ Settings are through the `0x31` register (named "DATA_FORMAT"), but they default
 
 ## Sampling rate
 
-With a **default** sampling rate of `100Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **1600 Hz**).
+With a **default** sampling rate of `100Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **1600 Hz**, due to there being 2 bytes per axis).
 
 ![](img/G-sensor.rate.jpg)
 
 ![](img/G-sensor.rate.2.jpg)
 
-(Old [data] values get discarded).
+### FFT options
+
+1. 16x bins of `50Hz` with a total range of `1600Hz`. This can be done using the 32 entries of the sensor's FIFO.
+2. Maximum sampling rate of `100Hz` (or `400Hz`), i.e. relative to the maximum I2C clock. This could be used for vibrations up to `50Hz`. (Resolution is unrestrained). (I'd suggest averaging the 32 FIFO entries).
+
+![](img/ADXL.speed.jpg) 
 
 ## Data
 
