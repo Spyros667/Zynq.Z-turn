@@ -1,4 +1,4 @@
-# [Zynq.Z-turn](https://github.com/Spyros667/Zynq.Z-turn)
+# [Zynq.Z-turn](https://github.com/Spyros667/Zynq.Z-turn) (in progress)
 
 The [z-turn][z-turn] board, is a [Zynq][Zynq] [PCB][PCB], featuring multiple peripherals:
 
