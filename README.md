@@ -173,12 +173,7 @@ Data is stored as 3 sets of 2 bytes, at registers `0x32 to 0x37`. They should be
 
 ![](img/G-sensor.DATA.jpg)
 
-## (Thoughts)
-
-With a maximum sampling rate of 1600Hz, we should probably delay data transmission for 1 frame (@ 60FPS).  
-This gives us 
-
----
+------------------------------------------------------------------------------
 
 ## GPIO
 
