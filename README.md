@@ -21,13 +21,13 @@ Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL
 * ### [I2C](#I2C-1)
 * ### [Referencies](#Referencies-1)
 
----
+------------------------------------------------------------------------------
 
 ## Block design
 
 ![I2C controller](block_design/sandbox.svg)
 
----
+------------------------------------------------------------------------------
 
 ## HDMI
 
@@ -78,7 +78,7 @@ Searching through the schematics for the **RESETn** pin, we can see it's connect
 ![RESET 2](img/RESETn.2.jpg)
 ![RESET 3](img/RESETn.3.jpg)
 
----
+------------------------------------------------------------------------------
 
 ## Temperature sensor
 
@@ -98,7 +98,7 @@ The sensor's [temperature] register, is at address **00h**. (It is **2 bytes** l
 
 ![Registers](img/Registers.jpg)
 
----
+------------------------------------------------------------------------------
 
 ## G-Sensor (acceleration sensor)
 
@@ -136,7 +136,7 @@ Settings are through the `0x31` register (named "DATA_FORMAT"), but they default
 
 ## Sampling rate
 
-With a **default** sampling rate of `100Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **1600 Hz**, due to there being 2 bytes per axis).
+With a **default** sampling rate of `50Hz`, maximum sampling rate can be achieved by setting the `0x2C` register to `0x0F` (which translates to **1600 Hz**, due to there being 2 bytes per axis).
 
 ![](img/G-sensor.rate.jpg)
 
@@ -148,18 +148,21 @@ DECLINED:
 > Doing an FFT only on the 32 samples (at maximum sampling rate) of the FIFO, would provide only 16 bins, which is too low a resolution, especially on the `1600Hz` span.
 
 FUTURE:  
-> Spectral analysis of nonuniformly sampled data can be achieved. This would be **ideal**, since it would span (?) the full spectrum of `1600Hz`. Details in the [docs/GDFT](docs/GDFT) folder.
+> Spectral analysis of nonuniformly sampled data can be achieved. This would be **ideal**, since it would span (?) the full spectrum of `1600Hz`. Details in the [docs/GDFT](docs/GDFT) folder.  
+Wikipedia: [Non-uniform discrete Fourier transform](https://en.wikipedia.org/wiki/Non-uniform_discrete_Fourier_transform)  
+Wikipedia: [Least-squares spectral analysis](https://en.wikipedia.org/wiki/Least-squares_spectral_analysis#The_Lomb.E2.80.93Scargle_periodogram) ★★  
+Matlab: [Spectral Analysis of Nonuniformly Sampled Signals](https://www.mathworks.com/help/signal/ug/spectral-analysis-of-nonuniformly-sampled-signals.html)
 
 ACCEPTED:  
-> Spectral analysis relative to I/O speed. That is, for a `100kHz` I2C speed a `100Hz` sampling rate is accepted.
+> Spectral analysis relative to I/O speed. That is, for a `100kHz` I2C speed a `50Hz` sampling rate is allowed (half the data rate).
 
 ![](img/ADXL.speed.jpg)
 
-A low data rate of `100Hz` should be preferred, against higher ones, due to the latter introducing noise.
+A low data rate of `100Hz` should be preferred, against higher ones, due to the latter ones introducing noise.
 
 ![](img/ADXL.noise.jpg)
 
-[Some] Lower (than `100Hz`) data rates should also be avoided, due to high offsetting, relative to temperature.
+[Some] Lower (than `100Hz`) data rates should also be avoided, since they introduce an offset, relative to temperature.
 
 ![](img/ADXL.temp.jpg)
 
@@ -172,6 +175,29 @@ Low power [operation] should also be avoided as it introduces additional noise.
 Data is stored as 3 sets of 2 bytes, at registers `0x32 to 0x37`. They should be read as a 6-byte burst, to retain concurrency.
 
 ![](img/G-sensor.DATA.jpg)
+
+## Trigger
+
+For a consistent 100Hz sampling rate, we cannot use an external Timer as a trigger because the 2 interrupt pins are both output.
+
+![](img/ADXL.interrupts.1.jpg)
+![](img/ADXL.interrupts.2.jpg)
+
+The 2nd interrupt pin is not connected.
+
+![](img/ADXL.interrupts.3.jpg)
+
+Thus, we shall program the ADXL to `100Hz`, by setting the `0x2C` register's "Rate" field to `0b1011`.
+
+![](img/ADXL.rate.100Hz.jpg)
+
+In order to signal DATA_READY on INT1 pin, we need to enable the "DATA_READY" field on `0x2E` and keep it cleared on `0x2F`.
+
+![](img/ADXL.interrupts.registers.jpg)
+
+The default values are the following.
+
+![](img/ADXL.interrupts.default_values.jpg)
 
 ------------------------------------------------------------------------------
 
@@ -195,7 +221,7 @@ And written:
 
 * **XGpioPs_WritePin()**
 
----
+------------------------------------------------------------------------------
 
 ## I2C
 
@@ -217,7 +243,7 @@ Reading:
 3. XIicPs_BusIsBusy(&Iic)
 4. XIicPs_MasterRecvPolled(&Iic, result.data(), result.capacity(), SLAVE_ADDRESS);  -- Read register's values
 
----
+------------------------------------------------------------------------------
 
 ## Referencies
 
