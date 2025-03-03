@@ -31,7 +31,7 @@ Some are accessed through Zynq's [PS][PS] part, while others through its [PL][PL
 
 ## HDMI
 
-In order to find, where the HDMI is connected to, we can reference the [schematics](doc/zturnv2Schematic.pdf).  
+In order to find, where the HDMI is connected to, we can reference the [schematics](docs/zturnv2Schematic.pdf).  
 According to these, they are connected to the [PL][PL] part (since [PS][PS] pins would be numbered like [MIO_#][MIO]).
 
 ![hdmi pins](img/HDMI_pins.jpg)
@@ -102,7 +102,7 @@ The sensor's [temperature] register, is at address **00h**. (It is **2 bytes** l
 
 ## G-Sensor (acceleration sensor)
 
-Referencing the [schematics](doc/zturnv2Schematic.pdf), the **g-sensor**, onboard, is the [adlx345](https://www.analog.com/en/products/adxl345.html) from *Analog Devices* ([datasheet](/home/ladon/contmp/Zynq.Z-turn/doc/adxl345.pdf)).
+Referencing the [schematics](docs/zturnv2Schematic.pdf), the **g-sensor**, onboard, is the [adlx345](https://www.analog.com/en/products/adxl345.html) from *Analog Devices* ([datasheet](docs/adxl345.pdf)).
 
 ![](img/adxl345.jpg)
 
@@ -144,10 +144,11 @@ With a **default** sampling rate of `100Hz`, maximum sampling rate can be achiev
 
 ### FFT options
 
-1. 16x bins of `50Hz` with a total range of `1600Hz`. This can be done using the 32 entries of the sensor's FIFO.
-2. Maximum sampling rate of `100Hz` (or `400Hz`), i.e. relative to the maximum I2C clock. This could be used for vibrations up to `50Hz`. (Resolution is unrestrained). (I'd suggest averaging the 32 FIFO entries).
+1. DECLINED: Doing an FFT only on the 32 samples (at maximum sampling rate) of the FIFO, would provide only 16 bins, which is too low a resolution, especially on the `1600Hz` span.
+2. FUTURE: Spectral analysis of nonuniformly sampled data can be achieved. This would be **ideal**, since it would span (?) the full spectrum of `1600Hz`. Details are in the [docs/GDFT](docs/GDFT) folder.
+3. ACCEPTED: Spectral analysis consistent with the datasheet's recommendations, relative to the communication (I2C) frequency. That is, for a `100kHz` I2C speed corresponds to a `100Hz` sampling rate.
 
-![](img/ADXL.speed.jpg) 
+![](img/ADXL.speed.jpg)
 
 ## Data
 
