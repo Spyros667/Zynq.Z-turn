@@ -142,13 +142,30 @@ With a **default** sampling rate of `100Hz`, maximum sampling rate can be achiev
 
 ![](img/G-sensor.rate.2.jpg)
 
-### FFT options
+### Spectral Analysis
 
-1. DECLINED: Doing an FFT only on the 32 samples (at maximum sampling rate) of the FIFO, would provide only 16 bins, which is too low a resolution, especially on the `1600Hz` span.
-2. FUTURE: Spectral analysis of nonuniformly sampled data can be achieved. This would be **ideal**, since it would span (?) the full spectrum of `1600Hz`. Details are in the [docs/GDFT](docs/GDFT) folder.
-3. ACCEPTED: Spectral analysis consistent with the datasheet's recommendations, relative to the communication (I2C) frequency. That is, for a `100kHz` I2C speed corresponds to a `100Hz` sampling rate.
+DECLINED:
+> Doing an FFT only on the 32 samples (at maximum sampling rate) of the FIFO, would provide only 16 bins, which is too low a resolution, especially on the `1600Hz` span.
+
+FUTURE:  
+> Spectral analysis of nonuniformly sampled data can be achieved. This would be **ideal**, since it would span (?) the full spectrum of `1600Hz`. Details in the [docs/GDFT](docs/GDFT) folder.
+
+ACCEPTED:  
+> Spectral analysis relative to I/O speed. That is, for a `100kHz` I2C speed a `100Hz` sampling rate is accepted.
 
 ![](img/ADXL.speed.jpg)
+
+A low data rate of `100Hz` should be preferred, against higher ones, due to the latter introducing noise.
+
+![](img/ADXL.noise.jpg)
+
+[Some] Lower (than `100Hz`) data rates should also be avoided, due to high offsetting, relative to temperature.
+
+![](img/ADXL.temp.jpg)
+
+Low power [operation] should also be avoided as it introduces additional noise.
+
+![](img/ADXL.low_power.jpg)
 
 ## Data
 
