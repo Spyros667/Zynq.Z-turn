@@ -199,6 +199,11 @@ The default values are the following.
 
 ![](img/ADXL.interrupts.default_values.jpg)
 
+## Conclusion
+
+* **Interrupts** to the PS, in order to maintain a target sampling rate
+* Initial **sampling rate** of 50Hz (prototype). Final sampling rate of 1600Hz (difficulty when *signal processing* due to *nonuniformly sampled data*)
+
 ------------------------------------------------------------------------------
 
 ## GPIO
